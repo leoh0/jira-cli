@@ -157,11 +157,11 @@ class JiraRestBridge(JiraBridge):
 
     @cached('projects')
     def get_projects(self):
-        return dict((k.name.lower(), k.raw) for k in self.jira.projects())
+        return dict((str(k.name.lower()), k.raw) for k in self.jira.projects())
 
     @cached('priorities')
     def get_priorities(self):
-        return dict((k.name.lower(), dict(k.raw)) for k in self.jira.priorities())
+        return dict((str(k.name.lower()), dict(k.raw)) for k in self.jira.priorities())
 
     @cached('components')
     def get_components(self, project):
@@ -169,7 +169,7 @@ class JiraRestBridge(JiraBridge):
 
     @cached('statuses')
     def get_statuses(self):
-        return dict((k.name.lower(), dict(k.raw)) for k in self.jira.statuses())
+        return dict((str(k.name.lower()), dict(k.raw)) for k in self.jira.statuses())
 
     def get_issue_comments(self, issue):
         return [

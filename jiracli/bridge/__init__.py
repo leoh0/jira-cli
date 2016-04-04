@@ -57,7 +57,7 @@ class JiraBridge(object):
             for k, v in groups:
                 if v.lower() in special_fields.keys():
                     key=issue[v.lower()]
-                    data = "" or JiraBridge.object_from_key(key, special_fields[v.lower()])["name"]
+                    data = "" or str(JiraBridge.object_from_key(key, special_fields[v.lower()])["name"])
                     ret_str = ret_str.replace(k, data)
                 else:
                     ret_str = ret_str.replace(k, issue.setdefault(v.lower(),"")).encode('utf-8')
